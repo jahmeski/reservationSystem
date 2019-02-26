@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::resource('personal-info', 'PersonalInfoController');
+Route::resource('my-schedule', 'ScheduleController');
+Route::resource('login-credential', 'UserController');

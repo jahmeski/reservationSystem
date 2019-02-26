@@ -1,6 +1,6 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+
 
 // Variables
 @import 'variables';
@@ -12,3 +12,14 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+// SB Admin theme dashboard
+@import '~startbootstrap-sb-admin/scss/sb-admin';
+@import '~startbootstrap-sb-admin/vendor/datatables/dataTables.bootstrap4.css';
+@import '~startbootstrap-sb-admin/vendor/fontawesome-free/css/all.css';
+
+// Bootstrap Datepicker
+@import '~bootstrap-datepicker/dist/css/bootstrap-datepicker3.css';
+
+// Bootstrap Daterangepicker
+@import '~bootstrap-daterangepicker/daterangepicker.css';

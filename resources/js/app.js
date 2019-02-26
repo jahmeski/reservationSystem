@@ -6,6 +6,14 @@
  */
 
 require('./bootstrap');
+require('startbootstrap-sb-admin/js/sb-admin');
+require('startbootstrap-sb-admin/vendor/chart.js/Chart');
+require('startbootstrap-sb-admin/vendor/datatables/dataTables.bootstrap4');
+require('startbootstrap-sb-admin/vendor/datatables/jquery.dataTables');
+require('startbootstrap-sb-admin/vendor/jquery-easing/jquery.easing');
+require('bootstrap-datepicker/js/bootstrap-datepicker');
+require('bootstrap-daterangepicker');
+
 
 window.Vue = require('vue');
 
