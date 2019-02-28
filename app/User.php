@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function personalInfo() {
         return $this->hasOne('App\PersonalInfo');
     }
+
+    public function mySchedules() {
+        return $this->hasMany('App\MySchedule');
+    }
 }

@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ScheduleRequest;
+use Illuminate\Support\Facades\Redirect;
+use App\MySchedule;
 
 class ScheduleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +24,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $user = User::findOrFail(Auth::user()->id);
-        return view('user.schedule.index', compact('user'));
+        $schedules = Auth::user()->mySchedules()->orderBy('updated_at', 'desc')->get();
+        return view('user.schedule.index', compact('schedules'));
     }
 
     /**
@@ -35,9 +44,12 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
-        //
+        $schedule = $request->all();
+        
+        Auth::user()->mySchedules()->create($schedule);
+        return Redirect::back()->with('message','Schedule Created!');
     }
 
     /**
@@ -59,7 +71,8 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $schedule = MySchedule::findOrFail($id);
+        return view('user.schedule.edit', compact('schedule'));
     }
 
     /**
@@ -69,9 +82,12 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ScheduleRequest $request, $id)
     {
-        //
+        $schedule = MySchedule::findOrFail($id);
+        $schedule->update($request->all());
+        
+        return view('user.schedule.sched', compact('schedule'));
     }
 
     /**
@@ -82,6 +98,9 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $schedule = MySchedule::findOrFail($id);
+        $schedule->delete();
+
+        return $schedule;
     }
 }
