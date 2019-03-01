@@ -5,7 +5,7 @@
                 {!! Form::label('event_name', 'Name of event:', ['class' => 'control-label', 'pull-right'] ) !!}
             </div>
             <div class="input-group col-md-12">
-                {!! Form::text('event_name', null, ['class' => 'form-control']) !!}
+                {!! Form::text('event_name', null, ['class' => 'form-control', 'id' => 'event_name']) !!}
                 {!! Form::hidden('id') !!}
             </div>
         </div>

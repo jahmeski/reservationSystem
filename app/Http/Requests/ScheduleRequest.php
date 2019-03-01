@@ -30,7 +30,7 @@ class ScheduleRequest extends FormRequest
     {
         return [
             'event_name' => ['required'],
-            'event_desc' => ['nullable'],
+            'event_desc' => ['required'],
             'event_loc' => ['nullable']
         ];
     }

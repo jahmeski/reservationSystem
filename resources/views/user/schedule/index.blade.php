@@ -114,7 +114,7 @@
     $('body').on('click', '.show-modal', function (event) {
         event.preventDefault();
 
-        var me = $(this),
+        let me = $(this),
             url = me.attr('href'),
             title = me.attr('title');
 
@@ -137,13 +137,13 @@
     $('#save-btn').click(function (event) {
         event.preventDefault();
 
-        var form = $('#modal-body form'),
+        let form = $('#modal-body form'),
             url = form.attr('action'),
             method = 'PUT';
 
         // reset errror messages
-        form.find('.help-block').remove();
-        form.find('.input-group').removeClass('has-error');
+        form.find('.invalid-feedback').remove();
+        form.find('.form-control').removeClass('is-invalid');
 
         $.ajax({
             url: url,
@@ -160,10 +160,11 @@
             },
             error: function(xhr) {
                 var errors = xhr.responseJSON;
-
+                    //console.log(errors.errors);
                 if ($.isEmptyObject(errors) == false) {
-                    $.each(errors, function (key, value) {
-                        alert(value);
+                    $.each(errors.errors, function (key, value) {
+                        let err = '<span class="invalid-feedback" style="display:block"><strong>'+ value +'</strong></span>';
+                        form.find('#' + key).addClass('is-invalid').after(err)
                     });
                 }
             }
@@ -175,7 +176,7 @@
     $('body').on('click', '.show-confirm-modal', function (event) {
         event.preventDefault();
 
-        var me = $(this),
+        let me = $(this),
             action = me.attr('href');
 
         $('#confirm-body form').attr('action', action);
@@ -206,7 +207,7 @@
     });
 
 function showMessage(message, element) {
-    var alert = element == undefined ? "#add-new-alert" : element;
+    let alert = element == undefined ? "#add-new-alert" : element;
     $(alert).text(message).fadeTo(1000, 500).slideUp(500, function () {
         $(this).slideUp(500);
     });
